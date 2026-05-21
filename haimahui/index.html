@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>海马回｜个人主页</title>
+  <style>
+    :root {
+      --paper: #f4f0e7;
+      --paper-deep: #e7dece;
+      --ink: #202622;
+      --soft-ink: #59615b;
+      --quiet: #7a827b;
+      --line: #d5c9b7;
+      --forest: #1f3a31;
+      --leaf: #61765d;
+      --brick: #a6533f;
+      --gold: #a97936;
+      --blue: #416676;
+      --white: #fffdf8;
+      --shadow: rgba(31, 58, 49, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    .contact-item {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .shell {
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(31, 58, 49, 0.05) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(31, 58, 49, 0.045) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 18px 0;
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--forest);
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--forest);
+      border-radius: 50%;
+      box-shadow: inset 10px 0 0 var(--brick);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      color: var(--soft-ink);
+      font-size: 14px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.95fr);
+      gap: 52px;
+      align-items: center;
+      width: min(1120px, calc(100% - 40px));
+      min-height: calc(100vh - 70px);
+      margin: 0 auto;
+      padding: 38px 0 84px;
+    }
+
+    .hero > *,
+    .section > *,
+    .connect > *,
+    .journal > * {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 22px;
+      color: var(--brick);
+      font-size: 15px;
+      font-weight: 650;
+      overflow-wrap: anywhere;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(52px, 7.2vw, 92px);
+      line-height: 1.02;
+      font-weight: 780;
+      letter-spacing: 0;
+      color: var(--forest);
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 28px 0 0;
+      color: #3f4742;
+      font-size: 21px;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid var(--forest);
+      background: var(--forest);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 650;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--forest);
+    }
+
+    .portrait {
+      position: relative;
+      min-height: 560px;
+      background:
+        linear-gradient(145deg, rgba(31, 58, 49, 0.92), rgba(65, 102, 118, 0.84)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='1100' viewBox='0 0 900 1100'%3E%3Crect width='900' height='1100' fill='%23d8c7a8'/%3E%3Cpath d='M0 826c91-59 167-77 229-55 63 22 93 78 176 90 102 16 157-54 261-45 72 6 151 50 234 132v152H0z' fill='%23fffaf0' fill-opacity='.33'/%3E%3Cpath d='M124 184c120-60 251-58 392 8 96 45 184 58 264 38' fill='none' stroke='%23fffaf0' stroke-width='5' stroke-opacity='.34'/%3E%3Cpath d='M96 272c148-74 294-73 438 2 101 52 187 61 258 27' fill='none' stroke='%23fffaf0' stroke-width='3' stroke-opacity='.25'/%3E%3Cpath d='M156 361c126-51 241-47 344 12 88 50 171 54 249 12' fill='none' stroke='%23fffaf0' stroke-width='3' stroke-opacity='.2'/%3E%3Ccircle cx='664' cy='704' r='82' fill='%23a6533f' fill-opacity='.62'/%3E%3Cpath d='M252 706c38-94 92-155 162-182 97-38 188 1 274-54' fill='none' stroke='%23f4f0e7' stroke-width='8' stroke-linecap='round' stroke-opacity='.74'/%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 28px 70px var(--shadow);
+      overflow: hidden;
+    }
+
+    .portrait::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 1px solid rgba(255, 253, 248, 0.48);
+      pointer-events: none;
+    }
+
+    .portrait-copy {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      bottom: 34px;
+      color: var(--white);
+    }
+
+    .portrait-copy p {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.42;
+      font-weight: 660;
+      overflow-wrap: anywhere;
+    }
+
+    .portrait-copy small {
+      display: block;
+      margin-top: 16px;
+      color: rgba(255, 253, 248, 0.76);
+      font-size: 14px;
+    }
+
+    .section {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 76px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 44px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      margin: 0;
+      color: var(--brick);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--forest);
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    .text-block {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 36px;
+    }
+
+    .text-block p {
+      margin: 0;
+      color: var(--soft-ink);
+      font-size: 18px;
+    }
+
+    .fields {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .field {
+      min-height: 230px;
+      padding: 26px;
+      background: rgba(255, 253, 248, 0.82);
+    }
+
+    .field-num {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .field h3 {
+      margin: 34px 0 12px;
+      color: var(--forest);
+      font-size: 22px;
+      line-height: 1.28;
+    }
+
+    .field p {
+      margin: 0;
+      color: var(--soft-ink);
+      font-size: 15px;
+    }
+
+    .journal {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 42px;
+      align-items: start;
+    }
+
+    .journal-note {
+      padding: 34px;
+      background: var(--forest);
+      color: var(--white);
+      min-height: 360px;
+    }
+
+    .journal-note h3 {
+      margin: 0 0 24px;
+      font-size: 30px;
+      line-height: 1.25;
+    }
+
+    .journal-note p {
+      margin: 0;
+      color: rgba(255, 253, 248, 0.82);
+      font-size: 17px;
+    }
+
+    .threads {
+      display: grid;
+      gap: 16px;
+    }
+
+    .thread {
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .thread:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .thread h3 {
+      margin: 0 0 8px;
+      color: var(--forest);
+      font-size: 22px;
+    }
+
+    .thread p {
+      margin: 0;
+      color: var(--soft-ink);
+      font-size: 16px;
+    }
+
+    .connect {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+      gap: 40px;
+      align-items: stretch;
+      padding: 56px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 60px rgba(31, 58, 49, 0.08);
+    }
+
+    .connect h2 {
+      font-size: clamp(34px, 5vw, 58px);
+    }
+
+    .connect p {
+      max-width: 660px;
+      color: var(--soft-ink);
+      font-size: 18px;
+    }
+
+    .contact-list {
+      display: grid;
+      align-content: center;
+      gap: 12px;
+    }
+
+    .contact-item {
+      padding: 16px 18px;
+      border-left: 4px solid var(--brick);
+      background: #f7f3eb;
+      color: var(--forest);
+      font-weight: 650;
+    }
+
+    @media (max-width: 920px) {
+      .nav {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero,
+      .section {
+        width: min(330px, calc(100vw - 28px));
+        max-width: min(330px, calc(100vw - 28px));
+      }
+
+      .hero,
+      .section-head,
+      .text-block,
+      .journal,
+      .connect {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 28px;
+        gap: 34px;
+      }
+
+      .portrait {
+        min-height: 430px;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .fields {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .connect {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        padding-bottom: 54px;
+      }
+
+      .intro {
+        font-size: 18px;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      .eyebrow {
+        font-size: 14px;
+        word-break: break-all;
+      }
+
+      .intro,
+      .portrait-copy p {
+        word-break: break-all;
+      }
+
+      .button {
+        min-height: 42px;
+        padding: 0 14px;
+        font-size: 14px;
+      }
+
+      .fields {
+        grid-template-columns: 1fr;
+      }
+
+      .field {
+        min-height: auto;
+      }
+
+      .portrait-copy p {
+        font-size: 22px;
+      }
+    }
+
+    @media print {
+      .nav {
+        position: static;
+      }
+
+      .shell {
+        background: var(--paper);
+      }
+
+      .portrait,
+      .journal-note {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav class="nav" aria-label="页面导航">
+      <a class="brand" href="#top" aria-label="回到首页">
+        <span class="brand-mark"></span>
+        <span>海马回</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">关于</a>
+        <a href="#fields">在做什么</a>
+        <a href="#threads">关心什么</a>
+        <a href="#connect">连接</a>
+      </div>
+    </nav>
+
+    <main id="top">
+      <section class="hero" aria-label="首页首屏">
+        <div>
+          <p class="eyebrow">AI / 内容 / 大健康 / 生活方式</p>
+          <h1>海马回</h1>
+          <p class="intro">
+            我从中医健康管理、内容运营和 AI 工作流里长出来。喜欢把感受、经验和散落材料，整理成更清楚、更可用的表达。
+          </p>
+          <div class="hero-actions" aria-label="快速跳转">
+            <a class="button" href="#about">先认识我</a>
+            <a class="button secondary" href="#connect">可以找我聊什么</a>
+          </div>
+        </div>
+        <aside class="portrait" aria-label="个人主页视觉">
+          <div class="portrait-copy">
+            <p>先把自己活清楚，再把经验整理成别人能用的东西。</p>
+            <small>内容 / AI / 大健康 / 知识系统 / 城市生活</small>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-head">
+          <p class="section-kicker">ABOUT</p>
+          <h2>我不是在做一个标准职业标签，而是在搭一个长期可生长的个人系统。</h2>
+        </div>
+        <div class="text-block">
+          <p>
+            我的背景横跨健康管理、内容运营、本地服务品牌、IP 协作和 AI 工具实践。它们看起来不在同一条线上，但底层一直有一个共同问题：怎样理解人，怎样把混乱经验变成清楚结构，怎样让一个东西真的被使用。
+          </p>
+          <p>
+            我喜欢生活里具体的东西：城市、小店、食物、身体感受、播客、电影、关系里的细节。也喜欢把这些具体经验往上提炼，变成课程、文章、清单、工作流、知识库，或者一个更稳定的判断。
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="fields">
+        <div class="section-head">
+          <p class="section-kicker">NOW</p>
+          <h2>现在主要在靠近这几个方向。</h2>
+        </div>
+        <div class="fields">
+          <article class="field">
+            <div class="field-num">01</div>
+            <h3>AI 与内容工作流</h3>
+            <p>把 AI 放进真实工作，而不是只拿来写几句话。重点是资料处理、长内容拆解、选题生成、知识库和 SOP。</p>
+          </article>
+          <article class="field">
+            <div class="field-num">02</div>
+            <h3>大健康与中医食疗</h3>
+            <p>关注普通人能听懂、能执行、能长期使用的健康内容，尤其是家庭餐桌、身体感受和生活方式。</p>
+          </article>
+          <article class="field">
+            <div class="field-num">03</div>
+            <h3>专家内容产品化</h3>
+            <p>把一个专业人士脑子里的经验，整理成课程、讲义、短内容、引流资料和可持续复用的内容系统。</p>
+          </article>
+          <article class="field">
+            <div class="field-num">04</div>
+            <h3>个人知识系统</h3>
+            <p>用 Obsidian、飞书和 AI 搭建自己的资料库、项目库和复盘系统，让经验不是散掉，而是慢慢长出来。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="threads">
+        <div class="journal">
+          <div class="journal-note">
+            <h3>我关心的不是“显得很厉害”，而是一个人怎么真的把自己活成一个可持续的系统。</h3>
+            <p>
+              所以我会同时关心很现实的交付，也关心一个人长期的体感、表达、边界、关系和生活质量。
+            </p>
+          </div>
+          <div class="threads">
+            <article class="thread">
+              <h3>把复杂信息讲成人话</h3>
+              <p>尤其是健康、中医、AI、知识管理这类容易变得抽象的领域，我更在意普通人能不能听懂、能不能照着做。</p>
+            </article>
+            <article class="thread">
+              <h3>把内容从灵感变成资产</h3>
+              <p>一次访谈、一段课程、一场聊天，不应该只被消费一次。它们可以被拆解、重组、归档，变成长期可调用的材料。</p>
+            </article>
+            <article class="thread">
+              <h3>把生活经验整理成方法</h3>
+              <p>我相信很多真正有用的判断，先是从身体、关系、城市和日常里长出来，然后才变成理论。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="connect">
+        <div class="connect">
+          <div>
+            <p class="section-kicker">CONNECT</p>
+            <h2>如果你想更具体地了解我，可以从这些话题开始。</h2>
+            <p>
+              这个页面不是完整简历，也不是作品集目录。它更像一个入口：让你先知道我大概是谁，我正在往哪里走，以及什么样的事情可能值得一起聊。
+            </p>
+          </div>
+          <div class="contact-list">
+            <div class="contact-item">AI 怎么进入真实内容工作流</div>
+            <div class="contact-item">大健康 / 食疗内容怎么讲给普通人</div>
+            <div class="contact-item">专家经验如何变成课程和资料包</div>
+            <div class="contact-item">个人知识库和内容系统怎么搭</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
